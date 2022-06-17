@@ -2,7 +2,10 @@ import os
 from datetime import timedelta
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = os.getenv(
+    'SECRET_KEY',
+    'ap4$$x^7pr36^k_ab54b3)r*_jkd*vjz-y$s-@jd3_wbyw@a!('
+)
 DEBUG = False
 ALLOWED_HOSTS = ['*']
 
