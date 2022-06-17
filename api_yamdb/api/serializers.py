@@ -3,7 +3,6 @@ from django.shortcuts import get_object_or_404
 from rest_framework import serializers
 from rest_framework.validators import UniqueTogetherValidator
 
-
 Category = apps.get_model(app_label='reviews', model_name='Category')
 Comment = apps.get_model(app_label='reviews', model_name='Comment')
 Genre = apps.get_model(app_label='reviews', model_name='Genre')

@@ -1,5 +1,4 @@
-from django_filters import rest_framework, FilterSet
-
+from django_filters import FilterSet, rest_framework
 from reviews import models
 
 

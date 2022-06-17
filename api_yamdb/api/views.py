@@ -4,21 +4,20 @@ from django.core.mail import send_mail
 from django.db.models import Avg
 from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import viewsets, pagination, filters, status
+from rest_framework import filters, pagination, status, viewsets
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import action
-from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import AccessToken
-
 from reviews import models
+
 from . import serializers
 from .filters import TitleFilter
-from .mixins import CreateMixin, CategoriesGenresMixin
-from .permissions import (
-    AdminOrReadOnly, OwnerOrReadOnly, UserViewSetPermission
-)
+from .mixins import CategoriesGenresMixin, CreateMixin
+from .permissions import (AdminOrReadOnly, OwnerOrReadOnly,
+                          UserViewSetPermission)
 
 User = apps.get_model(app_label='reviews', model_name='User')
 
@@ -150,8 +149,7 @@ class ReviewViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         title = get_object_or_404(models.Title, id=self.kwargs.get('title_id'))
-        queryset = title.reviews.all().order_by('-pub_date')
-        return queryset
+        return title.reviews.all().order_by('-pub_date')
 
     def perform_create(self, serializer):
         author = self.request.user
@@ -171,8 +169,7 @@ class CommentViewSet(viewsets.ModelViewSet):
             models.Review,
             id=self.kwargs.get('review_id'),
         )
-        queryset = models.Comment.objects.filter(review=review)
-        return queryset
+        return models.Comment.objects.filter(review=review)
 
     def perform_create(self, serializer):
         author = self.request.user
