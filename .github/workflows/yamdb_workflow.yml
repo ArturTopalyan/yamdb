@@ -53,6 +53,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
           # password: ${{ secrets.SSH_PASSWORD }}
           script: |
             sudo docker pull marlooooo/api_yamdb:latest
