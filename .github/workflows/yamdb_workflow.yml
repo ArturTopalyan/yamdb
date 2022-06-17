@@ -53,8 +53,10 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USER }}
         key: ${{ secrets.SSH_KEY }}
+        fingerprint: ${{ secrets.FINGERPRINT }}
         # password: ${{ secrets.SSH_PASSWORD }}
         script: |
+          echo hi
           sudo docker pull marlooooo/api_yamdb:latest
           sudo docker-compose stop
           sudo docker-compose rm web
