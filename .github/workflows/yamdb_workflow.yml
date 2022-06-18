@@ -1,6 +1,9 @@
 name: yamdb workflow
 
-on: [push]
+on: 
+  push:
+    branches:
+      - master
 
 jobs:
   tests:
@@ -52,7 +55,6 @@ jobs:
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
-          # key: ${{ secrets.SSH_KEY }}
           password: ${{ secrets.PASSPHRASE }}
           port: 22
           script: |
